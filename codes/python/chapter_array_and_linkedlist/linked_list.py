@@ -1,7 +1,7 @@
 """
 File: linked_list.py
 Created Time: 2022-11-25
-Author: Krahets (krahets@163.com)
+Author: krahets (krahets@163.com)
 """
 
 import sys
@@ -66,7 +66,8 @@ if __name__ == "__main__":
     print_linked_list(n0)
 
     # 插入节点
-    insert(n0, ListNode(0))
+    p = ListNode(0)
+    insert(n0, p)
     print("插入节点后的链表为")
     print_linked_list(n0)
 

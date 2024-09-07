@@ -1,7 +1,7 @@
 /*
  * File: min_path_sum.rs
  * Created Time: 2023-07-09
- * Author: sjinzh (sjinzh@gmail.com)
+ * Author: codingonion (coderonion@gmail.com)
  */
 
 /* 最小路径和：暴力搜索 */
@@ -91,10 +91,11 @@ fn min_path_sum_dp_comp(grid: &Vec<Vec<i32>>) -> i32 {
 /* Driver Code */
 pub fn main() {
     let grid = vec![
-        vec![ 1, 3, 1, 5 ],
-        vec![ 2, 2, 4, 2 ],
-        vec![ 5, 3, 2, 1 ],
-        vec![ 4, 3, 5, 2 ]];
+        vec![1, 3, 1, 5],
+        vec![2, 2, 4, 2],
+        vec![5, 3, 2, 1],
+        vec![4, 3, 5, 2],
+    ];
     let (n, m) = (grid.len(), grid[0].len());
 
     // 暴力搜索

@@ -2,7 +2,7 @@
 
 !!! question
 
-    给定一棵二叉树的前序遍历 `preorder` 和中序遍历 `inorder` ，请从中构建二叉树，返回二叉树的根节点。假设二叉树中没有值重复的节点。
+    给定一棵二叉树的前序遍历 `preorder` 和中序遍历 `inorder` ，请从中构建二叉树，返回二叉树的根节点。假设二叉树中没有值重复的节点（如下图所示）。
 
 ![构建二叉树的示例数据](build_binary_tree_problem.assets/build_tree_example.png)
 
@@ -27,7 +27,7 @@
 
 1. 前序遍历的首元素 3 是根节点的值。
 2. 查找根节点 3 在 `inorder` 中的索引，利用该索引可将 `inorder` 划分为 `[ 9 | 3 ｜ 1 2 7 ]` 。
-3. 根据 `inorder` 划分结果，易得左子树和右子树的节点数量分别为 1 和 3 ，从而可将 `preorder` 划分为 `[ 3 | 9 | 2 1 7 ]` 。
+3. 根据 `inorder` 的划分结果，易得左子树和右子树的节点数量分别为 1 和 3 ，从而可将 `preorder` 划分为 `[ 3 | 9 | 2 1 7 ]` 。
 
 ![在前序遍历和中序遍历中划分子树](build_binary_tree_problem.assets/build_tree_preorder_inorder_division.png)
 
@@ -49,7 +49,7 @@
 | 左子树 | $i + 1$                      | $[l, m-1]$                    |
 | 右子树 | $i + 1 + (m - l)$            | $[m+1, r]$                    |
 
-请注意，右子树根节点索引中的 $(m-l)$ 的含义是“左子树的节点数量”，建议配合下图理解。
+请注意，右子树根节点索引中的 $(m-l)$ 的含义是“左子树的节点数量”，建议结合下图理解。
 
 ![根节点和左右子树的索引区间表示](build_binary_tree_problem.assets/build_tree_division_pointers.png)
 

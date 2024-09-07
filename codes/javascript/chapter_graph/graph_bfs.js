@@ -7,12 +7,12 @@
 const { GraphAdjList } = require('./graph_adjacency_list');
 const { Vertex } = require('../modules/Vertex');
 
-/* 广度优先遍历 BFS */
+/* 广度优先遍历 */
 // 使用邻接表来表示图，以便获取指定顶点的所有邻接顶点
 function graphBFS(graph, startVet) {
     // 顶点遍历序列
     const res = [];
-    // 哈希表，用于记录已被访问过的顶点
+    // 哈希集合，用于记录已被访问过的顶点
     const visited = new Set();
     visited.add(startVet);
     // 队列用于实现 BFS
@@ -55,7 +55,7 @@ const graph = new GraphAdjList(edges);
 console.log('\n初始化后，图为');
 graph.print();
 
-/* 广度优先遍历 BFS */
+/* 广度优先遍历 */
 const res = graphBFS(graph, v[0]);
 console.log('\n广度优先遍历（BFS）顶点序列为');
 console.log(Vertex.vetsToVals(res));

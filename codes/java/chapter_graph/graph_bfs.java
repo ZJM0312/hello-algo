@@ -1,7 +1,7 @@
 /**
  * File: graph_bfs.java
  * Created Time: 2023-02-12
- * Author: Krahets (krahets@163.com)
+ * Author: krahets (krahets@163.com)
  */
 
 package chapter_graph;
@@ -10,12 +10,12 @@ import java.util.*;
 import utils.*;
 
 public class graph_bfs {
-    /* 广度优先遍历 BFS */
+    /* 广度优先遍历 */
     // 使用邻接表来表示图，以便获取指定顶点的所有邻接顶点
     static List<Vertex> graphBFS(GraphAdjList graph, Vertex startVet) {
         // 顶点遍历序列
         List<Vertex> res = new ArrayList<>();
-        // 哈希表，用于记录已被访问过的顶点
+        // 哈希集合，用于记录已被访问过的顶点
         Set<Vertex> visited = new HashSet<>();
         visited.add(startVet);
         // 队列用于实现 BFS
@@ -47,7 +47,7 @@ public class graph_bfs {
         System.out.println("\n初始化后，图为");
         graph.print();
 
-        /* 广度优先遍历 BFS */
+        /* 广度优先遍历 */
         List<Vertex> res = graphBFS(graph, v[0]);
         System.out.println("\n广度优先遍历（BFS）顶点序列为");
         System.out.println(Vertex.vetsToVals(res));

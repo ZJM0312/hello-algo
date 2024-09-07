@@ -15,22 +15,22 @@ class MaxHeap {
         // 将列表元素原封不动添加进堆
         maxHeap = nums
         // 堆化除叶节点以外的其他所有节点
-        for i in stride(from: parent(i: size() - 1), through: 0, by: -1) {
+        for i in (0 ... parent(i: size() - 1)).reversed() {
             siftDown(i: i)
         }
     }
 
-    /* 获取左子节点索引 */
+    /* 获取左子节点的索引 */
     private func left(i: Int) -> Int {
         2 * i + 1
     }
 
-    /* 获取右子节点索引 */
+    /* 获取右子节点的索引 */
     private func right(i: Int) -> Int {
         2 * i + 2
     }
 
-    /* 获取父节点索引 */
+    /* 获取父节点的索引 */
     private func parent(i: Int) -> Int {
         (i - 1) / 2 // 向下整除
     }

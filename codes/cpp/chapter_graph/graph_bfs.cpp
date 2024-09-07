@@ -1,18 +1,18 @@
 /**
  * File: graph_bfs.cpp
  * Created Time: 2023-03-02
- * Author: Krahets (krahets@163.com)
+ * Author: krahets (krahets@163.com)
  */
 
 #include "../utils/common.hpp"
 #include "./graph_adjacency_list.cpp"
 
-/* 广度优先遍历 BFS */
+/* 广度优先遍历 */
 // 使用邻接表来表示图，以便获取指定顶点的所有邻接顶点
 vector<Vertex *> graphBFS(GraphAdjList &graph, Vertex *startVet) {
     // 顶点遍历序列
     vector<Vertex *> res;
-    // 哈希表，用于记录已被访问过的顶点
+    // 哈希集合，用于记录已被访问过的顶点
     unordered_set<Vertex *> visited = {startVet};
     // 队列用于实现 BFS
     queue<Vertex *> que;
@@ -45,7 +45,7 @@ int main() {
     cout << "\n初始化后，图为\\n";
     graph.print();
 
-    /* 广度优先遍历 BFS */
+    /* 广度优先遍历 */
     vector<Vertex *> res = graphBFS(graph, v[0]);
     cout << "\n广度优先遍历（BFS）顶点序列为" << endl;
     printVector(vetsToVals(res));

@@ -1,13 +1,13 @@
 # 列表
 
-「列表 list」是一个抽象的数据结构概念，它表示元素的有序集合，支持元素访问、修改、添加、删除和遍历等操作，无须使用者考虑容量限制的问题。列表可以基于链表或数组实现。
+<u>列表（list）</u>是一个抽象的数据结构概念，它表示元素的有序集合，支持元素访问、修改、添加、删除和遍历等操作，无须使用者考虑容量限制的问题。列表可以基于链表或数组实现。
 
 - 链表天然可以看作一个列表，其支持元素增删查改操作，并且可以灵活动态扩容。
 - 数组也支持元素增删查改，但由于其长度不可变，因此只能看作一个具有长度限制的列表。
 
 当使用数组实现列表时，**长度不可变的性质会导致列表的实用性降低**。这是因为我们通常无法事先确定需要存储多少数据，从而难以选择合适的列表长度。若长度过小，则很可能无法满足使用需求；若长度过大，则会造成内存空间浪费。
 
-为解决此问题，我们可以使用「动态数组 dynamic array」来实现列表。它继承了数组的各项优点，并且可以在程序运行过程中进行动态扩容。
+为解决此问题，我们可以使用<u>动态数组（dynamic array）</u>来实现列表。它继承了数组的各项优点，并且可以在程序运行过程中进行动态扩容。
 
 实际上，**许多编程语言中的标准库提供的列表是基于动态数组实现的**，例如 Python 中的 `list` 、Java 中的 `ArrayList` 、C++ 中的 `vector` 和 C# 中的 `List` 等。在接下来的讨论中，我们将把“列表”和“动态数组”视为等同的概念。
 
@@ -126,6 +126,27 @@
     // C 未提供内置动态数组
     ```
 
+=== "Kotlin"
+
+    ```kotlin title="list.kt"
+    /* 初始化列表 */
+    // 无初始值
+    var nums1 = listOf<Int>()
+    // 有初始值
+    var numbers = arrayOf(1, 3, 2, 5, 4)
+    var nums = numbers.toMutableList()
+    ```
+
+=== "Ruby"
+
+    ```ruby title="list.rb"
+    # 初始化列表
+    # 无初始值
+    nums1 = []
+    # 有初始值
+    nums = [1, 3, 2, 5, 4]
+    ```
+
 === "Zig"
 
     ```zig title="list.zig"
@@ -134,6 +155,10 @@
     defer nums.deinit();
     try nums.appendSlice(&[_]i32{ 1, 3, 2, 5, 4 });
     ```
+
+??? pythontutor "可视化运行"
+
+    https://pythontutor.com/render.html#code=%22%22%22Driver%20Code%22%22%22%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20%23%20%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8%0A%20%20%20%20%23%20%E6%97%A0%E5%88%9D%E5%A7%8B%E5%80%BC%0A%20%20%20%20nums1%20%3D%20%5B%5D%0A%20%20%20%20%23%20%E6%9C%89%E5%88%9D%E5%A7%8B%E5%80%BC%0A%20%20%20%20nums%20%3D%20%5B1,%203,%202,%205,%204%5D&cumulative=false&curInstr=4&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false
 
 ### 访问元素
 
@@ -244,6 +269,24 @@
     // C 未提供内置动态数组
     ```
 
+=== "Kotlin"
+
+    ```kotlin title="list.kt"
+    /* 访问元素 */
+    val num = nums[1]       // 访问索引 1 处的元素
+    /* 更新元素 */
+    nums[1] = 0             // 将索引 1 处的元素更新为 0
+    ```
+
+=== "Ruby"
+
+    ```ruby title="list.rb"
+    # 访问元素
+    num = nums[1] # 访问索引 1 处的元素
+    # 更新元素
+    nums[1] = 0 # 将索引 1 处的元素更新为 0
+    ```
+
 === "Zig"
 
     ```zig title="list.zig"
@@ -251,8 +294,12 @@
     var num = nums.items[1]; // 访问索引 1 处的元素
 
     // 更新元素
-    nums.items[1] = 0; // 将索引 1 处的元素更新为 0  
+    nums.items[1] = 0; // 将索引 1 处的元素更新为 0
     ```
+
+??? pythontutor "可视化运行"
+
+    https://pythontutor.com/render.html#code=%22%22%22Driver%20Code%22%22%22%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20%23%20%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8%0A%20%20%20%20nums%20%3D%20%5B1,%203,%202,%205,%204%5D%0A%0A%20%20%20%20%23%20%E8%AE%BF%E9%97%AE%E5%85%83%E7%B4%A0%0A%20%20%20%20num%20%3D%20nums%5B1%5D%20%20%23%20%E8%AE%BF%E9%97%AE%E7%B4%A2%E5%BC%95%201%20%E5%A4%84%E7%9A%84%E5%85%83%E7%B4%A0%0A%0A%20%20%20%20%23%20%E6%9B%B4%E6%96%B0%E5%85%83%E7%B4%A0%0A%20%20%20%20nums%5B1%5D%20%3D%200%20%20%20%20%23%20%E5%B0%86%E7%B4%A2%E5%BC%95%201%20%E5%A4%84%E7%9A%84%E5%85%83%E7%B4%A0%E6%9B%B4%E6%96%B0%E4%B8%BA%200&cumulative=false&curInstr=3&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false
 
 ### 插入与删除元素
 
@@ -332,10 +379,10 @@
     nums.Add(4);
 
     /* 在中间插入元素 */
-    nums.Insert(3, 6);
+    nums.Insert(3, 6);  // 在索引 3 处插入数字 6
 
     /* 删除元素 */
-    nums.RemoveAt(3);
+    nums.RemoveAt(3);  // 删除索引 3 处的元素
     ```
 
 === "Go"
@@ -392,10 +439,10 @@
     nums.push(4);
 
     /* 在中间插入元素 */
-    nums.splice(3, 0, 6);
+    nums.splice(3, 0, 6); // 在索引 3 处插入数字 6
 
     /* 删除元素 */
-    nums.splice(3, 1);
+    nums.splice(3, 1);  // 删除索引 3 处的元素
     ```
 
 === "TS"
@@ -412,10 +459,10 @@
     nums.push(4);
 
     /* 在中间插入元素 */
-    nums.splice(3, 0, 6);
+    nums.splice(3, 0, 6); // 在索引 3 处插入数字 6
 
     /* 删除元素 */
-    nums.splice(3, 1);
+    nums.splice(3, 1);  // 删除索引 3 处的元素
     ```
 
 === "Dart"
@@ -464,6 +511,46 @@
     // C 未提供内置动态数组
     ```
 
+=== "Kotlin"
+
+    ```kotlin title="list.kt"
+    /* 清空列表 */
+    nums.clear();
+
+    /* 在尾部添加元素 */
+    nums.add(1);
+    nums.add(3);
+    nums.add(2);
+    nums.add(5);
+    nums.add(4);
+
+    /* 在中间插入元素 */
+    nums.add(3, 6);  // 在索引 3 处插入数字 6
+
+    /* 删除元素 */
+    nums.remove(3);  // 删除索引 3 处的元素
+    ```
+
+=== "Ruby"
+
+    ```ruby title="list.rb"
+    # 清空列表
+    nums.clear
+
+    # 在尾部添加元素
+    nums << 1
+    nums << 3
+    nums << 2
+    nums << 5
+    nums << 4
+
+    # 在中间插入元素
+    nums.insert(3, 6) # 在索引 3 处插入数字 6
+
+    # 删除元素
+    nums.delete_at(3) # 删除索引 3 处的元素
+    ```
+
 === "Zig"
 
     ```zig title="list.zig"
@@ -483,6 +570,10 @@
     // 删除元素
     _ = nums.orderedRemove(3); // 删除索引 3 处的元素
     ```
+
+??? pythontutor "可视化运行"
+
+    https://pythontutor.com/render.html#code=%22%22%22Driver%20Code%22%22%22%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20%23%20%E6%9C%89%E5%88%9D%E5%A7%8B%E5%80%BC%0A%20%20%20%20nums%20%3D%20%5B1,%203,%202,%205,%204%5D%0A%20%20%20%20%0A%20%20%20%20%23%20%E6%B8%85%E7%A9%BA%E5%88%97%E8%A1%A8%0A%20%20%20%20nums.clear%28%29%0A%20%20%20%20%0A%20%20%20%20%23%20%E5%9C%A8%E5%B0%BE%E9%83%A8%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0%0A%20%20%20%20nums.append%281%29%0A%20%20%20%20nums.append%283%29%0A%20%20%20%20nums.append%282%29%0A%20%20%20%20nums.append%285%29%0A%20%20%20%20nums.append%284%29%0A%20%20%20%20%0A%20%20%20%20%23%20%E5%9C%A8%E4%B8%AD%E9%97%B4%E6%8F%92%E5%85%A5%E5%85%83%E7%B4%A0%0A%20%20%20%20nums.insert%283,%206%29%20%20%23%20%E5%9C%A8%E7%B4%A2%E5%BC%95%203%20%E5%A4%84%E6%8F%92%E5%85%A5%E6%95%B0%E5%AD%97%206%0A%20%20%20%20%0A%20%20%20%20%23%20%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0%0A%20%20%20%20nums.pop%283%29%20%20%20%20%20%20%20%20%23%20%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95%203%20%E5%A4%84%E7%9A%84%E5%85%83%E7%B4%A0&cumulative=false&curInstr=3&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false
 
 ### 遍历列表
 
@@ -620,7 +711,7 @@
     for (var i = 0; i < nums.length; i++) {
         count += nums[i];
     }
-    
+
     /* 直接遍历列表元素 */
     count = 0;
     for (var num in nums) {
@@ -650,6 +741,37 @@
     // C 未提供内置动态数组
     ```
 
+=== "Kotlin"
+
+    ```kotlin title="list.kt"
+    /* 通过索引遍历列表 */
+    var count = 0
+    for (i in nums.indices) {
+        count += nums[i]
+    }
+
+    /* 直接遍历列表元素 */
+    for (num in nums) {
+        count += num
+    }
+    ```
+
+=== "Ruby"
+
+    ```ruby title="list.rb"
+    # 通过索引遍历列表
+    count = 0
+    for i in 0...nums.length
+        count += nums[i]
+    end
+
+    # 直接遍历列表元素
+    count = 0
+    for num in nums
+        count += num
+    end
+    ```
+
 === "Zig"
 
     ```zig title="list.zig"
@@ -666,6 +788,10 @@
         count += num;
     }
     ```
+
+??? pythontutor "可视化运行"
+
+    https://pythontutor.com/render.html#code=%22%22%22Driver%20Code%22%22%22%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20%23%20%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8%0A%20%20%20%20nums%20%3D%20%5B1,%203,%202,%205,%204%5D%0A%20%20%20%20%0A%20%20%20%20%23%20%E9%80%9A%E8%BF%87%E7%B4%A2%E5%BC%95%E9%81%8D%E5%8E%86%E5%88%97%E8%A1%A8%0A%20%20%20%20count%20%3D%200%0A%20%20%20%20for%20i%20in%20range%28len%28nums%29%29%3A%0A%20%20%20%20%20%20%20%20count%20%2B%3D%20nums%5Bi%5D%0A%0A%20%20%20%20%23%20%E7%9B%B4%E6%8E%A5%E9%81%8D%E5%8E%86%E5%88%97%E8%A1%A8%E5%85%83%E7%B4%A0%0A%20%20%20%20for%20num%20in%20nums%3A%0A%20%20%20%20%20%20%20%20count%20%2B%3D%20num&cumulative=false&curInstr=3&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false
 
 ### 拼接列表
 
@@ -758,6 +884,22 @@
     // C 未提供内置动态数组
     ```
 
+=== "Kotlin"
+
+    ```kotlin title="list.kt"
+    /* 拼接两个列表 */
+    val nums1 = intArrayOf(6, 8, 7, 10, 9).toMutableList()
+    nums.addAll(nums1)  // 将列表 nums1 拼接到 nums 之后
+    ```
+
+=== "Ruby"
+
+    ```ruby title="list.rb"
+    # 拼接两个列表
+    nums1 = [6, 8, 7, 10, 9]
+    nums += nums1
+    ```
+
 === "Zig"
 
     ```zig title="list.zig"
@@ -767,6 +909,10 @@
     try nums1.appendSlice(&[_]i32{ 6, 8, 7, 10, 9 });
     try nums.insertSlice(nums.items.len, nums1.items); // 将列表 nums1 拼接到 nums 之后
     ```
+
+??? pythontutor "可视化运行"
+
+    https://pythontutor.com/render.html#code=%22%22%22Driver%20Code%22%22%22%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20%23%20%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8%0A%20%20%20%20nums%20%3D%20%5B1,%203,%202,%205,%204%5D%0A%20%20%20%20%0A%20%20%20%20%23%20%E6%8B%BC%E6%8E%A5%E4%B8%A4%E4%B8%AA%E5%88%97%E8%A1%A8%0A%20%20%20%20nums1%20%3D%20%5B6,%208,%207,%2010,%209%5D%0A%20%20%20%20nums%20%2B%3D%20nums1%20%20%23%20%E5%B0%86%E5%88%97%E8%A1%A8%20nums1%20%E6%8B%BC%E6%8E%A5%E5%88%B0%20nums%20%E4%B9%8B%E5%90%8E&cumulative=false&curInstr=3&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false
 
 ### 排序列表
 
@@ -817,7 +963,7 @@
 === "JS"
 
     ```javascript title="list.js"
-    /* 排序列表 */  
+    /* 排序列表 */
     nums.sort((a, b) => a - b);  // 排序后，列表元素从小到大排列
     ```
 
@@ -848,12 +994,30 @@
     // C 未提供内置动态数组
     ```
 
+=== "Kotlin"
+
+    ```kotlin title="list.kt"
+    /* 排序列表 */
+    nums.sort() // 排序后，列表元素从小到大排列
+    ```
+
+=== "Ruby"
+
+    ```ruby title="list.rb"
+    # 排序列表
+    nums = nums.sort { |a, b| a <=> b } # 排序后，列表元素从小到大排列
+    ```
+
 === "Zig"
 
     ```zig title="list.zig"
     // 排序列表
     std.sort.sort(i32, nums.items, {}, comptime std.sort.asc(i32));
     ```
+
+??? pythontutor "可视化运行"
+
+    https://pythontutor.com/render.html#code=%22%22%22Driver%20Code%22%22%22%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20%23%20%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8%0A%20%20%20%20nums%20%3D%20%5B1,%203,%202,%205,%204%5D%0A%20%20%20%20%0A%20%20%20%20%23%20%E6%8E%92%E5%BA%8F%E5%88%97%E8%A1%A8%0A%20%20%20%20nums.sort%28%29%20%20%23%20%E6%8E%92%E5%BA%8F%E5%90%8E%EF%BC%8C%E5%88%97%E8%A1%A8%E5%85%83%E7%B4%A0%E4%BB%8E%E5%B0%8F%E5%88%B0%E5%A4%A7%E6%8E%92%E5%88%97&cumulative=false&curInstr=3&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false
 
 ## 列表实现
 

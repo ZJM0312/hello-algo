@@ -2,17 +2,17 @@
 
 内存空间是所有程序的公共资源，在一个复杂的系统运行环境下，空闲的内存空间可能散落在内存各处。我们知道，存储数组的内存空间必须是连续的，而当数组非常大时，内存可能无法提供如此大的连续空间。此时链表的灵活性优势就体现出来了。
 
-「链表 linked list」是一种线性数据结构，其中的每个元素都是一个节点对象，各个节点通过“引用”相连接。引用记录了下一个节点的内存地址，通过它可以从当前节点访问到下一个节点。
+<u>链表（linked list）</u>是一种线性数据结构，其中的每个元素都是一个节点对象，各个节点通过“引用”相连接。引用记录了下一个节点的内存地址，通过它可以从当前节点访问到下一个节点。
 
 链表的设计使得各个节点可以分散存储在内存各处，它们的内存地址无须连续。
 
 ![链表定义与存储方式](linked_list.assets/linkedlist_definition.png)
 
-观察上图，链表的组成单位是「节点 node」对象。每个节点都包含两项数据：节点的“值”和指向下一节点的“引用”。
+观察上图，链表的组成单位是<u>节点（node）</u>对象。每个节点都包含两项数据：节点的“值”和指向下一节点的“引用”。
 
 - 链表的首个节点被称为“头节点”，最后一个节点被称为“尾节点”。
-- 尾节点指向的是“空”，它在 Java、C++ 和 Python 中分别被记为 $\text{null}$、$\text{nullptr}$ 和 $\text{None}$ 。
-- 在 C、C++、Go 和 Rust 等支持指针的语言中，上述的“引用”应被替换为“指针”。
+- 尾节点指向的是“空”，它在 Java、C++ 和 Python 中分别被记为 `null`、`nullptr` 和 `None` 。
+- 在 C、C++、Go 和 Rust 等支持指针的语言中，上述“引用”应被替换为“指针”。
 
 如以下代码所示，链表节点 `ListNode` 除了包含值，还需额外保存一个引用（指针）。因此在相同数据量下，**链表比数组占用更多的内存空间**。
 
@@ -157,6 +157,32 @@
         node->next = NULL;
         return node;
     }
+    ```
+
+=== "Kotlin"
+
+    ```kotlin title=""
+    /* 链表节点类 */
+    // 构造方法
+    class ListNode(x: Int) {
+        val _val: Int = x          // 节点值
+        val next: ListNode? = null // 指向下一个节点的引用
+    }
+    ```
+
+=== "Ruby"
+
+    ```ruby title=""
+    # 链表节点类
+    class ListNode
+      attr_accessor :val  # 节点值
+      attr_accessor :next # 指向下一节点的引用
+
+      def initialize(val=0, next_node=nil)
+        @val = val
+        @next = next_node
+      end
+    end
     ```
 
 === "Zig"
@@ -373,6 +399,40 @@
     n3->next = n4;
     ```
 
+=== "Kotlin"
+
+    ```kotlin title="linked_list.kt"
+    /* 初始化链表 1 -> 3 -> 2 -> 5 -> 4 */
+    // 初始化各个节点
+    val n0 = ListNode(1)
+    val n1 = ListNode(3)
+    val n2 = ListNode(2)
+    val n3 = ListNode(5)
+    val n4 = ListNode(4)
+    // 构建节点之间的引用
+    n0.next = n1;
+    n1.next = n2;
+    n2.next = n3;
+    n3.next = n4;
+    ```
+
+=== "Ruby"
+
+    ```ruby title="linked_list.rb"
+    # 初始化链表 1 -> 3 -> 2 -> 5 -> 4
+    # 初始化各个节点
+    n0 = ListNode.new(1)
+    n1 = ListNode.new(3)
+    n2 = ListNode.new(2)
+    n3 = ListNode.new(5)
+    n4 = ListNode.new(4)
+    # 构建节点之间的引用
+    n0.next = n1
+    n1.next = n2
+    n2.next = n3
+    n3.next = n4
+    ```
+
 === "Zig"
 
     ```zig title="linked_list.zig"
@@ -389,6 +449,10 @@
     n2.next = &n3;
     n3.next = &n4;
     ```
+
+??? pythontutor "可视化运行"
+
+    https://pythontutor.com/render.html#code=class%20ListNode%3A%0A%20%20%20%20%22%22%22%E9%93%BE%E8%A1%A8%E8%8A%82%E7%82%B9%E7%B1%BB%22%22%22%0A%20%20%20%20def%20__init__%28self,%20val%3A%20int%29%3A%0A%20%20%20%20%20%20%20%20self.val%3A%20int%20%3D%20val%20%20%23%20%E8%8A%82%E7%82%B9%E5%80%BC%0A%20%20%20%20%20%20%20%20self.next%3A%20ListNode%20%7C%20None%20%3D%20None%20%20%23%20%E5%90%8E%E7%BB%A7%E8%8A%82%E7%82%B9%E5%BC%95%E7%94%A8%0A%0A%22%22%22Driver%20Code%22%22%22%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20%23%20%E5%88%9D%E5%A7%8B%E5%8C%96%E9%93%BE%E8%A1%A8%201%20-%3E%203%20-%3E%202%20-%3E%205%20-%3E%204%0A%20%20%20%20%23%20%E5%88%9D%E5%A7%8B%E5%8C%96%E5%90%84%E4%B8%AA%E8%8A%82%E7%82%B9%0A%20%20%20%20n0%20%3D%20ListNode%281%29%0A%20%20%20%20n1%20%3D%20ListNode%283%29%0A%20%20%20%20n2%20%3D%20ListNode%282%29%0A%20%20%20%20n3%20%3D%20ListNode%285%29%0A%20%20%20%20n4%20%3D%20ListNode%284%29%0A%20%20%20%20%23%20%E6%9E%84%E5%BB%BA%E8%8A%82%E7%82%B9%E4%B9%8B%E9%97%B4%E7%9A%84%E5%BC%95%E7%94%A8%0A%20%20%20%20n0.next%20%3D%20n1%0A%20%20%20%20n1.next%20%3D%20n2%0A%20%20%20%20n2.next%20%3D%20n3%0A%20%20%20%20n3.next%20%3D%20n4&cumulative=false&curInstr=3&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false
 
 数组整体是一个变量，比如数组 `nums` 包含元素 `nums[0]` 和 `nums[1]` 等，而链表是由多个独立的节点对象组成的。**我们通常将头节点当作链表的代称**，比如以上代码中的链表可记作链表 `n0` 。
 
@@ -451,7 +515,7 @@
 
 如下图所示，常见的链表类型包括三种。
 
-- **单向链表**：即前面介绍的普通链表。单向链表的节点包含值和指向下一节点的引用两项数据。我们将首个节点称为头节点，将最后一个节点称为尾节点，尾节点指向空 $\text{None}$ 。
+- **单向链表**：即前面介绍的普通链表。单向链表的节点包含值和指向下一节点的引用两项数据。我们将首个节点称为头节点，将最后一个节点称为尾节点，尾节点指向空 `None` 。
 - **环形链表**：如果我们令单向链表的尾节点指向头节点（首尾相接），则得到一个环形链表。在环形链表中，任意节点都可以视作头节点。
 - **双向链表**：与单向链表相比，双向链表记录了两个方向的引用。双向链表的节点定义同时包含指向后继节点（下一个节点）和前驱节点（上一个节点）的引用（指针）。相较于单向链表，双向链表更具灵活性，可以朝两个方向遍历链表，但相应地也需要占用更多的内存空间。
 
@@ -624,6 +688,35 @@
     }
     ```
 
+=== "Kotlin"
+
+    ```kotlin title=""
+    /* 双向链表节点类 */
+    // 构造方法
+    class ListNode(x: Int) {
+        val _val: Int = x           // 节点值
+        val next: ListNode? = null  // 指向后继节点的引用
+        val prev: ListNode? = null  // 指向前驱节点的引用
+    }
+    ```
+
+=== "Ruby"
+
+    ```ruby title=""
+    # 双向链表节点类
+    class ListNode
+      attr_accessor :val    # 节点值
+      attr_accessor :next   # 指向后继节点的引用
+      attr_accessor :prev   # 指向前驱节点的引用
+
+      def initialize(val=0, next_node=nil, prev_node=nil)
+        @val = val
+        @next = next_node
+        @prev = prev_node
+      end
+    end
+    ```
+
 === "Zig"
 
     ```zig title=""
@@ -652,7 +745,7 @@
 
 单向链表通常用于实现栈、队列、哈希表和图等数据结构。
 
-- **栈与队列**：当插入和删除操作都在链表的一端进行时，它表现出先进后出的特性，对应栈；当插入操作在链表的一端进行，删除操作在链表的另一端进行，它表现出先进先出的特性，对应队列。
+- **栈与队列**：当插入和删除操作都在链表的一端进行时，它表现的特性为先进后出，对应栈；当插入操作在链表的一端进行，删除操作在链表的另一端进行，它表现的特性为先进先出，对应队列。
 - **哈希表**：链式地址是解决哈希冲突的主流方案之一，在该方案中，所有冲突的元素都会被放到一个链表中。
 - **图**：邻接表是表示图的一种常用方式，其中图的每个顶点都与一个链表相关联，链表中的每个元素都代表与该顶点相连的其他顶点。
 

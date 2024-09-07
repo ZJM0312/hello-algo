@@ -1,6 +1,6 @@
 # 数组
 
-「数组 array」是一种线性数据结构，其将相同类型的元素存储在连续的内存空间中。我们将元素在数组中的位置称为该元素的「索引 index」。下图展示了数组的主要术语和概念。
+<u>数组（array）</u>是一种线性数据结构，其将相同类型的元素存储在连续的内存空间中。我们将元素在数组中的位置称为该元素的<u>索引（index）</u>。下图展示了数组的主要概念和存储方式。
 
 ![数组定义与存储方式](array.assets/array_definition.png)
 
@@ -42,7 +42,7 @@
 
     ```csharp title="array.cs"
     /* 初始化数组 */
-    int[] arr = new int[5]; // { 0, 0, 0, 0, 0 }
+    int[] arr = new int[5]; // [ 0, 0, 0, 0, 0 ]
     int[] nums = [1, 3, 2, 5, 4];
     ```
 
@@ -93,7 +93,12 @@
 
     ```rust title="array.rs"
     /* 初始化数组 */
-    let arr: Vec<i32> = vec![0; 5]; // [0, 0, 0, 0, 0]
+    let arr: [i32; 5] = [0; 5]; // [0, 0, 0, 0, 0]
+    let slice: &[i32] = &[0; 5];
+    // 在 Rust 中，指定长度时（[i32; 5]）为数组，不指定长度时（&[i32]）为切片
+    // 由于 Rust 的数组被设计为在编译期确定长度，因此只能使用常量来指定长度
+    // Vector 是 Rust 一般情况下用作动态数组的类型
+    // 为了方便实现扩容 extend() 方法，以下将 vector 看作数组（array）
     let nums: Vec<i32> = vec![1, 3, 2, 5, 4];
     ```
 
@@ -105,6 +110,22 @@
     int nums[5] = { 1, 3, 2, 5, 4 };
     ```
 
+=== "Kotlin"
+
+    ```kotlin title="array.kt"
+    /* 初始化数组 */
+    var arr = IntArray(5) // { 0, 0, 0, 0, 0 }
+    var nums = intArrayOf(1, 3, 2, 5, 4)
+    ```
+
+=== "Ruby"
+
+    ```ruby title="array.rb"
+    # 初始化数组
+    arr = Array.new(5, 0)
+    nums = [1, 3, 2, 5, 4]
+    ```
+
 === "Zig"
 
     ```zig title="array.zig"
@@ -112,6 +133,10 @@
     var arr = [_]i32{0} ** 5; // { 0, 0, 0, 0, 0 }
     var nums = [_]i32{ 1, 3, 2, 5, 4 };
     ```
+
+??? pythontutor "可视化运行"
+
+    https://pythontutor.com/render.html#code=%23%20%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E7%BB%84%0Aarr%20%3D%20%5B0%5D%20*%205%20%20%23%20%5B%200,%200,%200,%200,%200%20%5D%0Anums%20%3D%20%5B1,%203,%202,%205,%204%5D&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false
 
 ### 访问元素
 

@@ -7,7 +7,7 @@
 const { Vertex } = require('../modules/Vertex');
 const { GraphAdjList } = require('./graph_adjacency_list');
 
-/* 深度优先遍历 DFS */
+/* 深度优先遍历 */
 // 使用邻接表来表示图，以便获取指定顶点的所有邻接顶点
 function dfs(graph, visited, res, vet) {
     res.push(vet); // 记录访问顶点
@@ -22,12 +22,12 @@ function dfs(graph, visited, res, vet) {
     }
 }
 
-/* 深度优先遍历 DFS */
+/* 深度优先遍历 */
 // 使用邻接表来表示图，以便获取指定顶点的所有邻接顶点
 function graphDFS(graph, startVet) {
     // 顶点遍历序列
     const res = [];
-    // 哈希表，用于记录已被访问过的顶点
+    // 哈希集合，用于记录已被访问过的顶点
     const visited = new Set();
     dfs(graph, visited, res, startVet);
     return res;
@@ -48,7 +48,7 @@ const graph = new GraphAdjList(edges);
 console.log('\n初始化后，图为');
 graph.print();
 
-/* 深度优先遍历 DFS */
+/* 深度优先遍历 */
 const res = graphDFS(graph, v[0]);
 console.log('\n深度优先遍历（DFS）顶点序列为');
 console.log(Vertex.vetsToVals(res));

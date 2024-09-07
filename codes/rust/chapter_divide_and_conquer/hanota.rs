@@ -1,7 +1,7 @@
 /*
  * File: hanota.rs
  * Created Time: 2023-07-15
- * Author: sjinzh (sjinzh@gmail.com)
+ * Author: codingonion (coderonion@gmail.com)
  */
 
 #![allow(non_snake_case)]
@@ -9,7 +9,7 @@
 /* 移动一个圆盘 */
 fn move_pan(src: &mut Vec<i32>, tar: &mut Vec<i32>) {
     // 从 src 顶部拿出一个圆盘
-    let pan = src.remove(src.len() - 1);
+    let pan = src.pop().unwrap();
     // 将圆盘放入 tar 顶部
     tar.push(pan);
 }
