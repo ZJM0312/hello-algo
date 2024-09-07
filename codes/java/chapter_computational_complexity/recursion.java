@@ -61,7 +61,7 @@ public class recursion {
 
     /* Driver Code */
     public static void main(String[] args) {
-        int n = 5;
+        int n = 4;
         int res;
 
         res = recur(n);
